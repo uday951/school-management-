@@ -71,7 +71,7 @@ export function CrudManager<T extends { _id: string; isArchived?: boolean }>({
     reset,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(zodSchema),
+    resolver: zodResolver(zodSchema as any),
     defaultValues,
   });
 

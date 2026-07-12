@@ -18,7 +18,7 @@ export const Register: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterInput>({
-    resolver: zodResolver(RegisterInputSchema),
+    resolver: zodResolver(RegisterInputSchema as any),
     defaultValues: {
       role: 'SCHOOL_ADMIN',
     },

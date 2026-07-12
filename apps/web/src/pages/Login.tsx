@@ -17,7 +17,7 @@ export const Login: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginInput>({
-    resolver: zodResolver(LoginInputSchema),
+    resolver: zodResolver(LoginInputSchema as any),
   });
 
   const onSubmit = async (data: LoginInput) => {
