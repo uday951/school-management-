@@ -1,0 +1,28 @@
+{
+  "name": "school-timetable-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production-ready AI School Timetable Management System",
+  "workspaces": [
+    "apps/web",
+    "apps/api",
+    "packages/ui",
+    "packages/types",
+    "packages/utils",
+    "packages/validation",
+    "packages/config"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run api:dev\" \"npm run web:dev\"",
+    "web:dev": "npm run dev -w apps/web",
+    "api:dev": "npm run dev -w apps/api",
+    "api:build": "npm run build -w apps/api",
+    "api:start": "npm run start -w apps/api",
+    "seed": "npm run seed -w apps/api",
+    "typecheck": "npm run build -w packages/types && npm run build -w packages/validation && npm run api:build && npm run build -w apps/web"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.3",
+    "typescript": "^5.4.5"
+  }
+}

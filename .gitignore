@@ -1,0 +1,19 @@
+# Dependencies and generated output
+node_modules/
+dist/
+.turbo/
+coverage/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Logs and editor files
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+*.tsbuildinfo
+__pycache__/
+*.py[cod]

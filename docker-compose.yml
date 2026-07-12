@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: school-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - school-network
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    container_name: school-api
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongodb:27017/school-timetable-system
+      - JWT_ACCESS_SECRET=super_access_secret_phrase_9999
+      - JWT_REFRESH_SECRET=super_refresh_secret_phrase_9999
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    depends_on:
+      - mongodb
+    networks:
+      - school-network
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.web
+    container_name: school-web
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    networks:
+      - school-network
+
+  scheduler:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.scheduler
+    container_name: school-scheduler
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/school-timetable-system
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    depends_on:
+      - mongodb
+    networks:
+      - school-network
+
+volumes:
+  mongo-data:
+
+networks:
+  school-network:
+    driver: bridge
