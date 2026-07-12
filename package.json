@@ -16,7 +16,7 @@
     "dev": "concurrently \"npm run api:dev\" \"npm run web:dev\"",
     "web:dev": "npm run dev -w apps/web",
     "api:dev": "npm run dev -w apps/api",
-    "build": "npm run build -w packages/types && npm run build -w packages/validation && npm run build -w packages/utils && npm run build -w apps/api",
+    "build": "npm install --include=dev && npm run build -w packages/types && npm run build -w packages/validation && npm run build -w packages/utils && npm run build -w apps/api",
     "start": "npm run start -w apps/api",
     "api:build": "npm run build -w apps/api",
     "api:start": "npm run start -w apps/api",
@@ -26,5 +26,8 @@
   "devDependencies": {
     "concurrently": "^10.0.3",
     "typescript": "5.4.5"
+  },
+  "overrides": {
+    "zod": "3.22.4"
   }
 }
