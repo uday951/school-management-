@@ -17,6 +17,7 @@
     "web:dev": "npm run dev -w apps/web",
     "api:dev": "npm run dev -w apps/api",
     "build": "npm install --include=dev && npm run build -w packages/types && npm run build -w packages/validation && npm run build -w packages/utils && npm run build -w apps/api",
+    "web:build": "npm install --include=dev && npm run build -w apps/web",
     "start": "npm run start -w apps/api",
     "api:build": "npm run build -w apps/api",
     "api:start": "npm run start -w apps/api",
