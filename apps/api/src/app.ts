@@ -19,9 +19,13 @@ app.set('trust proxy', 1);
 app.use(helmet());
 
 // Enable CORS
+const allowedOrigins = env.CORS_ORIGIN === '*'
+  ? true  // allow all origins
+  : env.CORS_ORIGIN.split(',').map((o) => o.trim());
+
 app.use(
   cors({
-    origin: env.CORS_ORIGIN.split(',').map((origin) => origin.trim()),
+    origin: allowedOrigins,
     credentials: true,
   })
 );
