@@ -62,13 +62,13 @@ export const Register: React.FC = () => {
           <Input
             label="First Name"
             placeholder="John"
-            error={errors.profile?.firstName?.message}
+            error={(errors.profile as any)?.firstName?.message?.toString()}
             {...register('profile.firstName')}
           />
           <Input
             label="Last Name"
             placeholder="Doe"
-            error={errors.profile?.lastName?.message}
+            error={(errors.profile as any)?.lastName?.message?.toString()}
             {...register('profile.lastName')}
           />
         </div>
@@ -76,21 +76,21 @@ export const Register: React.FC = () => {
         <Input
           label="Email address"
           placeholder="admin@school.com"
-          error={errors.email?.message}
+          error={errors.email?.message?.toString()}
           {...register('email')}
         />
 
         <Input
           label="School Name"
           placeholder="Lincoln Academy"
-          error={errors.schoolName?.message}
+          error={errors.schoolName?.message?.toString()}
           {...register('schoolName')}
         />
 
         <Select
           label="Your Role"
           options={roleOptions}
-          error={errors.role?.message}
+          error={errors.role?.message?.toString()}
           {...register('role')}
         />
 
@@ -98,7 +98,7 @@ export const Register: React.FC = () => {
           label="Password"
           type="password"
           placeholder="••••••••"
-          error={errors.password?.message}
+          error={errors.password?.message?.toString()}
           {...register('password')}
         />
 

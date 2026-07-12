@@ -16,6 +16,7 @@ export default defineConfig(({ mode }) => {
         '@mahathi/types':      path.resolve(__dirname, '../../packages/types/src/index.ts'),
         '@mahathi/validation': path.resolve(__dirname, '../../packages/validation/src/index.ts'),
         '@mahathi/utils':      path.resolve(__dirname, '../../packages/utils/src/index.ts'),
+        '@mahathi/ui':         path.resolve(__dirname, '../../packages/ui/src/index.tsx'),
       },
     },
     server: {

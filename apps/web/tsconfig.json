@@ -18,7 +18,16 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Workspace Paths */
+    "baseUrl": ".",
+    "paths": {
+      "@mahathi/types": ["../../packages/types/src/index.ts"],
+      "@mahathi/validation": ["../../packages/validation/src/index.ts"],
+      "@mahathi/utils": ["../../packages/utils/src/index.ts"],
+      "@mahathi/ui": ["../../packages/ui/src/index.tsx"]
+    }
   },
   "include": ["src"]
 }

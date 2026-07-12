@@ -57,7 +57,7 @@ export const Login: React.FC = () => {
         <Input
           label="Email address"
           placeholder="coordinator@lincoln.com"
-          error={errors.email?.message}
+          error={errors.email?.message?.toString()}
           {...register('email')}
         />
 
@@ -65,7 +65,7 @@ export const Login: React.FC = () => {
           label="Password"
           type="password"
           placeholder="••••••••"
-          error={errors.password?.message}
+          error={errors.password?.message?.toString()}
           {...register('password')}
         />
 
