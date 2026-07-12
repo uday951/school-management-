@@ -21,6 +21,10 @@ FROM node:18-alpine AS runner
 WORKDIR /usr/src/app
 
 COPY package*.json ./
+COPY packages/types/package.json ./packages/types/package.json
+COPY packages/validation/package.json ./packages/validation/package.json
+COPY packages/utils/package.json ./packages/utils/package.json
+COPY apps/api/package.json ./apps/api/package.json
 RUN npm ci --only=production
 
 COPY --from=builder /usr/src/app/packages ./packages
@@ -29,4 +33,4 @@ COPY --from=builder /usr/src/app/apps/api/dist ./apps/api/dist
 EXPOSE 5000
 
 ENV NODE_ENV=production
-CMD ["node", "apps/api/dist/server.js"]
+CMD ["node", "apps/api/dist/index.js"]

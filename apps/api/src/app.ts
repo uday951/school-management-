@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import morgan from 'morgan';
 import { logger } from './config/logger';
+import { env } from './config/env';
 import { errorHandler } from './middleware/errorHandler';
 import { apiRateLimiter } from './middleware/rateLimiter';
 import { cookieMiddleware } from './middleware/cookieMiddleware';
@@ -12,6 +13,7 @@ import authRoutes from './routes/authRoutes';
 import erpRoutes from './routes/erpRoutes';
 
 const app = express();
+app.set('trust proxy', 1);
 
 // Set security HTTP headers
 app.use(helmet());
@@ -19,7 +21,7 @@ app.use(helmet());
 // Enable CORS
 app.use(
   cors({
-    origin: 'http://localhost:3000', // React client URL
+    origin: env.CORS_ORIGIN.split(',').map((origin) => origin.trim()),
     credentials: true,
   })
 );
