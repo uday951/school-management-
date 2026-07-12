@@ -2,14 +2,18 @@ import { Response, NextFunction } from 'express';
 import { AuthRequest } from '../middleware/authMiddleware';
 import { BaseRepository } from '../repositories/BaseRepository';
 import { Document, Types } from 'mongoose';
-import { ZodSchema } from 'zod';
+
+// Duck-typed interface so any Zod schema version works without import coupling
+interface ParseableSchema {
+  parse: (data: unknown) => any;
+}
 
 export class BaseController<T extends Document> {
   protected repo: BaseRepository<T>;
-  protected inputSchema?: ZodSchema<any>;
+  protected inputSchema?: ParseableSchema;
   protected searchFields: string[];
 
-  constructor(repo: BaseRepository<T>, searchFields: string[] = [], inputSchema?: ZodSchema<any>) {
+  constructor(repo: BaseRepository<T>, searchFields: string[] = [], inputSchema?: ParseableSchema) {
     this.repo = repo;
     this.searchFields = searchFields;
     this.inputSchema = inputSchema;
